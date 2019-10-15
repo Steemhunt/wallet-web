@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
-import api from 'utils/api';
+import React, { Component } from "react";
+import api from "utils/api";
 
 const AppContext = React.createContext();
 const { Provider, Consumer } = AppContext;
 
 class AppProvider extends Component {
-  state = {};
+  state = {
+    luniverseAddress: null
+  };
 
-  componentDidMount() {}
+  async componentDidMount() {
+  }
 
-  updateState = (key, value) => {
-    this.setState({ [key]: value });
+  updateState = (obj) => {
+    this.setState(obj);
   };
 
   render() {
@@ -18,7 +21,7 @@ class AppProvider extends Component {
       <Provider
         value={{
           ...this.state,
-          updateState: this.updateState,
+          updateState: this.updateState
         }}
       >
         {this.props.children}

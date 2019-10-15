@@ -5,15 +5,27 @@ const HomeContext = React.createContext();
 const { Provider, Consumer } = HomeContext;
 
 class HomeProvider extends Component {
-  state = {
-  };
+  state = {};
 
   componentDidMount() {}
 
-
-  updateState = (key, value) => {
-    this.setState({ [key]: value });
+  updateState = obj => {
+    this.setState(obj);
   };
+
+  addSwap = async (amount, luniverse_address, eth_address) => {
+    const result = await api.post("/swaps", {
+      global_user_id: 1,
+      amount,
+      luniverse_address,
+      eth_address,
+    });
+    console.log(result);
+  };
+
+  burnHUNT = () => {
+
+  }
 
   render() {
     return (
@@ -21,6 +33,7 @@ class HomeProvider extends Component {
         value={{
           ...this.state,
           updateState: this.updateState,
+          addSwap: this.addSwap
         }}
       >
         {this.props.children}
